@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grouped Tabs</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Custom styles for the popup */
+        body {
+            width: 400px; /* Adjust width as needed for better readability */
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6; /* Light gray background */
+        }
+        .tab-item {
+            display: flex;
+            align-items: center;
+            padding: 8px 12px;
+            border-bottom: 1px solid #e5e7eb; /* Light border */
+        }
+        .tab-item:last-child {
+            border-bottom: none;
+        }
+        .tab-item input[type="checkbox"] {
+            margin-right: 10px;
+        }
+        .tab-title {
+            flex-grow: 1;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 0.9em;
+            color: #374151; /* Darker gray for text */
+        }
+        .tab-url {
+            font-size: 0.7em;
+            color: #6b7280; /* Lighter gray for URL */
+            margin-left: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .group-header {
+            background-color: #e0e7ff; /* Lighter blue for group headers */
+            color: #1e40af; /* Darker blue for header text */
+            padding: 6px 12px;
+            font-weight: bold;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            margin-top: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .group-header:first-of-type {
+            margin-top: 0;
+            border-top-left-radius: 0;
+            border-top-right-radius: 0;
+        }
+        .tab-list-container {
+            max-height: 500px; /* Max height for scrollability */
+            overflow-y: auto;
+            background-color: #ffffff; /* White background for tab list */
+            border-radius: 8px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* Subtle shadow */
+            padding-bottom: 10px; /* Padding at the bottom for scroll */
+        }
+        .action-buttons {
+            padding: 10px;
+            background-color: #ffffff;
+            border-top: 1px solid #e5e7eb;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            border-bottom-left-radius: 8px;
+            border-bottom-right-radius: 8px;
+            margin-top: 10px; /* Space above buttons */
+        }
+        button {
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        button.primary {
+            background-color: #4f46e5; /* Indigo primary button */
+            color: white;
+        }
+        button.primary:hover {
+            background-color: #4338ca; /* Darker indigo on hover */
+        }
+        button.secondary {
+            background-color: #e0e7ff; /* Light blue secondary button */
+            color: #4f46e5;
+        }
+        button.secondary:hover {
+            background-color: #c7d2fe; /* Darker light blue on hover */
+        }
+        .select-all-checkbox {
+            margin-right: 5px;
+        }
+    </style>
+    <script src="popup.js" defer></script>
+</head>
+<body class="p-4">
+    <div class="flex items-center justify-between mb-4">
+        <h1 class="text-xl font-bold text-gray-800">Open Tabs by TLD</h1>
+    </div>
+
+    <div id="tabList" class="tab-list-container">
+        <!-- Tabs will be loaded here by popup.js -->
+        <p class="text-center text-gray-500 py-4" id="loadingMessage">Loading tabs...</p>
+    </div>
+
+    <div class="action-buttons">
+        <button id="selectAllBtn" class="secondary">Select All</button>
+        <button id="closeSelectedBtn" class="primary">Close Selected Tabs</button>
+    </div>
+</body>
+</html>
